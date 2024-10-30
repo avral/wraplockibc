@@ -137,6 +137,9 @@ void wraplock::add_reserve(const extended_asset& value){
 // called on transfer action to lock tokens and initiate interchain transfer
 void wraplock::deposit(name from, name to, asset quantity, string memo)
 { 
+   // IBC EOS -> destination temporary FIX
+    check(to != _self, "EOS -> destination transfers stopped temporary");
+   //
 
     print("transfer ", name{from}, " ",  name{to}, " ", quantity, "\n");
     print("sender: ", get_sender(), "\n");
